@@ -19,13 +19,20 @@ function App() {
     .then(resp => resp.json())
     .then(data => setPlayerData(data.league.standard))
     },[])
+  //fetching teamInfo
+  const [teamData, setTeamData] = useState([])
+  useEffect(()=> {
+  fetch('https://data.nba.net//data/10s/prod/v1/2020/teams.json')
+  .then(resp => resp.json())
+  .then(data => setTeamData(data.league.standard))
+  },[])
     
   return (
     <div className="App">
       <NavBar/>
 
       <Switch>
-        <Route path = "/teams" component = {()=> <Teams/>} />
+        <Route path = "/teams" component = {()=> <Teams teamData={teamData}/>} />
         <Route path = "/players" component = {()=> <Players playerData = {playerData}/>} />
         <Route path = "/myTeamPage" component = {()=> <MyTeamPage/>} />
         <Route path = "/favorites" component = {()=> <Favorites/>} />
