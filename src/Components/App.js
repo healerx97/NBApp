@@ -1,7 +1,7 @@
 import '../App.css';
 import nba from 'nba'
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom'
 
 import Home from './Home';
@@ -12,8 +12,14 @@ import Players from './Players';
 import NavBar from './NavBar';
 
 function App() {
-  console.log(nba)
-  const playerData = nba.players
+  //fetching playerInfo
+  const [playerData, setPlayerData] = useState([])
+    useEffect(()=> {
+    fetch('https://data.nba.net//data/10s/prod/v1/2020/players.json')
+    .then(resp => resp.json())
+    .then(data => setPlayerData(data.league.standard))
+    },[])
+    
   return (
     <div className="App">
       <NavBar/>

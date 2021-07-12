@@ -1,11 +1,10 @@
 import nba from 'nba'
 
 function LoadPlayer({ player }) {
-    const details = nba.searchPlayers(player.fullName)
     return (
         <div>
-            <h3>Name: {player.fullName}</h3>
-            {/* <h4>Name: {details}</h4> */}
+            <h3>Name: {player.firstName} {player.lastName}</h3>
+            <img src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${player.personId}.png`} alt="image"/>
         </div>
     )
 }
