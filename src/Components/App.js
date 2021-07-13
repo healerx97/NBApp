@@ -15,16 +15,16 @@ function App() {
   //fetching playerInfo
   const [playerData, setPlayerData] = useState([])
     useEffect(()=> {
-    fetch('https://data.nba.net//data/10s/prod/v1/2020/players.json')
+    fetch('http://127.0.0.1:9393/players')
     .then(resp => resp.json())
-    .then(data => setPlayerData(data.league.standard))
-    },[])
+    .then(data => setPlayerData(data))
+    },[]) 
   //fetching teamInfo
   const [teamData, setTeamData] = useState([])
   useEffect(()=> {
-  fetch('https://data.nba.net//data/10s/prod/v1/2020/teams.json')
+  fetch('http://127.0.0.1:9393/teams')
   .then(resp => resp.json())
-  .then(data => setTeamData(data.league.standard))
+  .then(data => setTeamData(data))
   },[])
     
   return (
