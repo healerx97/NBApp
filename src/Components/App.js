@@ -16,6 +16,7 @@ import Signup from './Signup';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
+  const [user, setUser] = useState("")
   //fetching playerInfo
   const [playerData, setPlayerData] = useState([])
     useEffect(()=> {
@@ -33,15 +34,15 @@ function App() {
     
   return (
     <div className="App">
-      <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+      <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
 
       <Switch>
         <Route path = "/teams" component = {()=> <Teams teamData={teamData}/>} />
         <Route path = "/players" component = {()=> <Players playerData = {playerData}/>} />
         <Route path = "/myTeamPage" component = {()=> <MyTeamPage/>} />
         <Route path = "/favorites" component = {()=> <Favorites/>} />
-        <Route path="/login" component = {()=> <Login/>} />
-        <Route path="/signup" component = {()=> <Signup/>} />
+        <Route path="/login" component = {()=> <Login user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+        <Route path="/signup" component = {()=> <Signup user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
         <Route path = "/" component = {()=> <Home/>} />
       </Switch>
     </div>

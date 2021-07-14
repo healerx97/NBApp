@@ -1,8 +1,11 @@
 import { Form, FormGroup, FormLabel, Button } from "react-bootstrap"
 import { useState } from "react"
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom"
 
-function Signup(){
+function Signup({user, setUser, loggedIn, setLoggedIn}){
     const [signUp, setSignUp] = useState(true)
+    const history = useHistory()
 
 
     function handleSubmit(e) {
@@ -28,11 +31,17 @@ function Signup(){
                 if (data === false) {
                     setSignUp(false)
                 }
+                else {
+                    setUser(data)
+                    setLoggedIn(true)
+                    history.push("/")
+                }
             })
         }
     }
 
     let tryAgain = (<p>Email already exists</p>)
+
 
     return(
         <Form onSubmit = {handleSubmit}>
@@ -48,9 +57,11 @@ function Signup(){
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" />
         </Form.Group>
+       
         <Button variant="primary" type="submit">
             Sign up
         </Button>
+       
         {signUp ? null : tryAgain}
     </Form>
     )

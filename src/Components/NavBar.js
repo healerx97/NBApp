@@ -1,8 +1,24 @@
 import { NavLink } from 'react-router-dom'
 import { Navbar, Container, Nav } from "react-bootstrap"
+import { useHistory } from 'react-router-dom'
 
 
-function NavBar({loggedIn, setLoggedIn}) {
+function NavBar({loggedIn, setLoggedIn, user, setUser}) {
+    const history = useHistory()
+
+    function handleClick(e) {
+        e.preventDefault()
+        if (e.target.innerText === 'Log out') {
+            setLoggedIn(false)
+            setUser("")
+            history.push('/login')
+        }
+        else {
+            history.push('/login')
+        }
+        
+
+    }
 
     return (
         <header>
@@ -25,7 +41,7 @@ function NavBar({loggedIn, setLoggedIn}) {
                         <Nav.Link href="/myTeamPage" exact activeStyle={{color: "blue"}}>
                         My Team
                         </Nav.Link>
-                        <Nav.Link href={loggedIn ? "/logout" : "/login"}>{loggedIn ? "Log out" : "Log in"}</Nav.Link>
+                        <Nav.Link onClick={handleClick} href={loggedIn ? "/logout" : "/login"}>{loggedIn ? "Log out" : "Log in"}</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

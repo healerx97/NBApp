@@ -1,8 +1,10 @@
 import { Form, FormGroup, FormLabel, Button } from "react-bootstrap"
 import { useState } from "react"
+import { useHistory } from "react-router-dom"
 
-function Login(){
+function Login({user, setUser, loggedIn, setLoggedIn}){
     const [loginStatus, setLoginStatus] = useState(true)
+    const history = useHistory()
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -27,7 +29,10 @@ function Login(){
                 }
                 else {
                     setLoginStatus(true)
-                    console.log(data)
+                    setUser(data)
+                    setLoggedIn(true)
+                    history.push("/")
+                    // console.log(data)
                 }
             })
         }
