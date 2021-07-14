@@ -1,30 +1,39 @@
 import { Form, FormGroup, FormLabel, Button } from "react-bootstrap"
+import { useState } from "react"
 
 function Login(){
+    const [loginStatus, setLoginStatus] = useState(true)
 
     function handleSubmit(e) {
         e.preventDefault();
-        let name = e.target[0].value
-        let email = e.target[1].value
-        let password = e.target[2].value
-        if (e.nativeEvent.submitter.innerText === 'Sign up') {
-            fetch('http://127.0.0.1:9393/signup', {
+        let email = e.target[0].value
+        let password = e.target[1].value
+        if (e.nativeEvent.submitter.innerText === 'Login') {
+            fetch('http://127.0.0.1:9393/login', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    name: name,
                     email: email,
                     password: password
                 })
             })
             .then(resp => resp.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if (data.status === false) {
+                    setLoginStatus(false)
+                }
+                else {
+                    setLoginStatus(true)
+                    console.log(data)
+                }
+            })
         }
     }
 
+    let error = (<p>Invalid email or password</p>)
 
     return (
         <Form onSubmit = {handleSubmit}>
@@ -42,6 +51,7 @@ function Login(){
             <Button variant="primary" href="/signup">
                 Sign up
             </Button>
+            {loginStatus ? null : error}
         </Form>
     )
 }

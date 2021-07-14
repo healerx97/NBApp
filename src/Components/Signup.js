@@ -1,6 +1,9 @@
 import { Form, FormGroup, FormLabel, Button } from "react-bootstrap"
+import { useState } from "react"
 
 function Signup(){
+    const [signUp, setSignUp] = useState(true)
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -21,9 +24,15 @@ function Signup(){
                 })
             })
             .then(resp => resp.json())
-            .then(data => console.log(data))
+            .then(data => {
+                if (data === false) {
+                    setSignUp(false)
+                }
+            })
         }
     }
+
+    let tryAgain = (<p>Email already exists</p>)
 
     return(
         <Form onSubmit = {handleSubmit}>
@@ -42,6 +51,7 @@ function Signup(){
         <Button variant="primary" type="submit">
             Sign up
         </Button>
+        {signUp ? null : tryAgain}
     </Form>
     )
 }
