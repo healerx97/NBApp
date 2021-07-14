@@ -3,6 +3,7 @@ import nba from 'nba'
 
 import React, { useState, useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './Home';
 import Favorites from './Favorites';
@@ -10,8 +11,10 @@ import MyTeamPage from './MyTeamPage';
 import Teams from './Teams';
 import Players from './Players';
 import NavBar from './NavBar';
+import Login from './Login';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false)
   //fetching playerInfo
   const [playerData, setPlayerData] = useState([])
     useEffect(()=> {
@@ -29,13 +32,14 @@ function App() {
     
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
 
       <Switch>
         <Route path = "/teams" component = {()=> <Teams teamData={teamData}/>} />
         <Route path = "/players" component = {()=> <Players playerData = {playerData}/>} />
         <Route path = "/myTeamPage" component = {()=> <MyTeamPage/>} />
         <Route path = "/favorites" component = {()=> <Favorites/>} />
+        <Route path="/login" component = {()=> <Login/>} />
         <Route path = "/" component = {()=> <Home/>} />
       </Switch>
     </div>
