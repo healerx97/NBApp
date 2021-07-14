@@ -33,8 +33,10 @@ function Signup({user, setUser, loggedIn, setLoggedIn}){
                 }
                 else {
                     setUser(data)
+                    console.log(data)
                     setLoggedIn(true)
                     history.push("/")
+                    console.log(user)
                 }
             })
         }

@@ -2,7 +2,8 @@ import SearchBar from './SearchBar'
 import LoadPlayer from './LoadPlayer'
 import AddPlayer from './AddPlayer'
 
-function MyTeamPage({setSearchTerm, myTeam, userTeamId }) {
+function MyTeamPage({setSearchTerm, myTeam, userTeamId, user }) {
+    console.log(user)
     const renderMyTeam = myTeam.map(player => <LoadPlayer player = {player} key = {player.id}/>)
     // const renderResults = 
     return (

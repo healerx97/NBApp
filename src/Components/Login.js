@@ -1,6 +1,7 @@
 import { Form, FormGroup, FormLabel, Button } from "react-bootstrap"
 import { useState } from "react"
 import { useHistory } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 function Login({user, setUser, loggedIn, setLoggedIn}){
     const [loginStatus, setLoginStatus] = useState(true)
@@ -29,12 +30,16 @@ function Login({user, setUser, loggedIn, setLoggedIn}){
                 }
                 else {
                     setLoginStatus(true)
-                    setUser(data)
-                    setLoggedIn(true)
+                    setUser(data[0])
                     history.push("/")
-                    // console.log(data)
+                    // console.log(user)
+                    setLoggedIn(true)
+                   
+                    // console.log(data[0])
                 }
             })
+            .then(console.log(user))
+            
         }
     }
 

@@ -16,7 +16,7 @@ import Signup from './Signup';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
-  const [user, setUser] = useState("")
+  const [user, setUser] = useState({})
   const [searchTerm, setSearchTerm] = useState("")
   const [myTeam, setMyTeam] = useState([])
   const [userTeamId, setUserTeamId] = useState("")
@@ -58,13 +58,13 @@ function App() {
       <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
 
       <Switch>
-        <Route path = "/teams" component = {()=> <Teams teamData={teamData}/>} />
-        <Route path = "/players" component = {()=> <Players playerData = {playerData}/>} />
-        <Route path = "/myTeamPage" component = {()=> <MyTeamPage setSearchTerm = {setSearchTerm} myTeam = {myTeam} userTeamId = {userTeamId}/>} />
-        <Route path = "/favorites" component = {()=> <Favorites/>} />
+        <Route path = "/teams" component = {()=> <Teams user = {user} teamData={teamData}/>} />
+        <Route path = "/players" component = {()=> <Players user = {user} playerData = {playerData}/>} />
+        <Route path = "/myTeamPage" component = {()=> <MyTeamPage user = {user} setSearchTerm = {setSearchTerm} myTeam = {myTeam} userTeamId = {userTeamId}/>} />
+        <Route path = "/favorites" component = {()=> <Favorites user = {user}/>} />
         <Route path="/login" component = {()=> <Login user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/signup" component = {()=> <Signup user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
-        <Route path = "/" component = {()=> <Home/>} />
+        <Route path = "/" component = {()=> <Home user={user}/>} />
       </Switch>
     </div>
   );

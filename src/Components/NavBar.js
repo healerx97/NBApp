@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Navbar, Container, Nav } from "react-bootstrap"
 import { useHistory } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ function NavBar({loggedIn, setLoggedIn, user, setUser}) {
         e.preventDefault()
         if (e.target.innerText === 'Log out') {
             setLoggedIn(false)
-            setUser("")
+            setUser({})
             history.push('/login')
         }
         else {
@@ -26,22 +26,22 @@ function NavBar({loggedIn, setLoggedIn, user, setUser}) {
             <Navbar bg="primary" expand="lg" variant="dark">
                 <Container id="navbar">
                     <Nav className="me-auto">
-                        <Nav.Link href="/">
+                        <Nav.Link as={Link} to="/">
                         Home
                         </Nav.Link>
-                        <Nav.Link href="/teams">
+                        <Nav.Link as={Link} to="/teams">
                         Teams
                         </Nav.Link>
-                        <Nav.Link href="/players">
+                        <Nav.Link as={Link} to="/players">
                         Players
                         </Nav.Link>
-                        <Nav.Link href="/favorites" exact activeStyle={{color: "blue"}}>
+                        <Nav.Link as={Link} to="/favorites" >
                         Favorites
                         </Nav.Link>
-                        <Nav.Link href="/myTeamPage" exact activeStyle={{color: "blue"}}>
+                        <Nav.Link as={Link} to="/myTeamPage" >
                         My Team
                         </Nav.Link>
-                        <Nav.Link onClick={handleClick} href={loggedIn ? "/logout" : "/login"}>{loggedIn ? "Log out" : "Log in"}</Nav.Link>
+                        <Nav.Link as={Link} onClick={handleClick} to={loggedIn ? "/logout" : "/login"}>{loggedIn ? "Log out" : "Log in"}</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
