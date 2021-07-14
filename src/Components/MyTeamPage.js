@@ -1,5 +1,5 @@
-function MyTeamPage() {
-
+function MyTeamPage({user}) {
+    console.log(user)
     return (
         <div>
             sample
