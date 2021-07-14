@@ -12,6 +12,7 @@ import Teams from './Teams';
 import Players from './Players';
 import NavBar from './NavBar';
 import Login from './Login';
+import Signup from './Signup';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -40,6 +41,7 @@ function App() {
         <Route path = "/myTeamPage" component = {()=> <MyTeamPage/>} />
         <Route path = "/favorites" component = {()=> <Favorites/>} />
         <Route path="/login" component = {()=> <Login/>} />
+        <Route path="/signup" component = {()=> <Signup/>} />
         <Route path = "/" component = {()=> <Home/>} />
       </Switch>
     </div>
