@@ -17,6 +17,21 @@ import Signup from './Signup';
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [user, setUser] = useState("")
+  const [searchTerm, setSearchTerm] = useState("")
+  const [myTeam, setMyTeam] = useState([])
+  const [userTeamId, setUserTeamId] = useState("")
+  useEffect(()=> {
+    fetch('http://127.0.0.1:9393/userteam')
+    .then(resp=> resp.json())
+    .then(data=> {
+      data.forEach(team => {
+        if (team.user_id == user.id) {
+          setUserTeamId(team.id)
+        }
+      })
+    })
+  },[user])
+
   //fetching playerInfo
   const [playerData, setPlayerData] = useState([])
     useEffect(()=> {
@@ -31,6 +46,12 @@ function App() {
   .then(resp => resp.json())
   .then(data => setTeamData(data))
   },[])
+  // fetching user team (get)
+  useEffect(()=> {
+    fetch('http://127.0.0.1:9393/myteam')
+    .then(resp => resp.json())
+    .then(data => setMyTeam(data))
+    },[user])
     
   return (
     <div className="App">
@@ -39,7 +60,7 @@ function App() {
       <Switch>
         <Route path = "/teams" component = {()=> <Teams teamData={teamData}/>} />
         <Route path = "/players" component = {()=> <Players playerData = {playerData}/>} />
-        <Route path = "/myTeamPage" component = {()=> <MyTeamPage/>} />
+        <Route path = "/myTeamPage" component = {()=> <MyTeamPage setSearchTerm = {setSearchTerm} myTeam = {myTeam} userTeamId = {userTeamId}/>} />
         <Route path = "/favorites" component = {()=> <Favorites/>} />
         <Route path="/login" component = {()=> <Login user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/signup" component = {()=> <Signup user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />

@@ -1,9 +1,16 @@
-function SearchBar() {
-
+import { FloatingLabel, Form, FormGroup } from 'react-bootstrap'
+function SearchBar({setSearchTerm}) {
+    function handleChange(e) {
+        setSearchTerm(e.target.value)
+    }
     return (
-        <div>
-            sample
-        </div>
+            <FloatingLabel
+                controlId= "floatingInput"
+                label= "Search players"
+                className= "mb-3"
+            >
+                <Form.Control type="text" placeholder="Player name goes here" onChange = {handleChange}/>
+            </FloatingLabel>
     )
 }
 
