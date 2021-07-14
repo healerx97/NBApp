@@ -7,7 +7,22 @@ function Signup(){
         let name = e.target[0].value
         let email = e.target[1].value
         let password = e.target[2].value
-       
+        if (e.nativeEvent.submitter.innerText === 'Sign up') {
+            fetch('http://127.0.0.1:9393/signup', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    password: password
+                })
+            })
+            .then(resp => resp.json())
+            .then(data => console.log(data))
+        }
     }
 
     return(
