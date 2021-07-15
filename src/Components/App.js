@@ -101,7 +101,7 @@ function App() {
       <Switch>
         <Route path = "/teams" component = {()=> <Teams user = {user} teamData={teamData}/>} />
         <Route path = "/players" component = {()=> <Players user = {user} playerData = {playerData}/>} />
-        <Route path = "/myTeamPage" component = {()=> <MyTeamPage teamName={teamName} setUserTeamId={setUserTeamId} handleChange = {handleChange} user = {user} searchTerm = {searchTerm} setSearchTerm = {setSearchTerm} setMyTeam = {setMyTeam} myTeam = {myTeam} userTeamId = {userTeamId} searchedPlayerData = {searchedPlayerData}/>} />
+        <Route path = "/myTeamPage" component = {()=> <MyTeamPage setTeamName={setTeamName} teamName={teamName} setUserTeamId={setUserTeamId} handleChange = {handleChange} user = {user} searchTerm = {searchTerm} setSearchTerm = {setSearchTerm} setMyTeam = {setMyTeam} myTeam = {myTeam} userTeamId = {userTeamId} searchedPlayerData = {searchedPlayerData}/>} />
         <Route path = "/favorites" component = {()=> <Favorites user = {user}/>} />
         <Route path="/login" component = {()=> <Login user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/signup" component = {()=> <Signup user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />

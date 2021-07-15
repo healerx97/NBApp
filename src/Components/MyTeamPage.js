@@ -5,13 +5,13 @@ import { CardDeck,Row,Col} from 'react-bootstrap'
 import { Button } from "react-bootstrap"
 import { useState } from "react"
 
-function MyTeamPage({handleChange, setSearchTerm, searchTerm, myTeam, setMyTeam, userTeamId, user, searchedPlayerData, setUserTeamId, teamName }) {
+function MyTeamPage({handleChange, setTeamName, setSearchTerm, searchTerm, myTeam, setMyTeam, userTeamId, user, searchedPlayerData, setUserTeamId, teamName }) {
     const [addPlayerError, setAddPlayerError] = useState(false)
 
 
     let renderMyTeam = []
     if (myTeam) {
-    renderMyTeam = (<Row xs={1} md={6} className="g-4">
+    renderMyTeam = (<Row xs={1} md={6} className="g-6">
     {Array.from(myTeam).map((player, idx) => (
         <Col>
         <LoadPlayer player = {player} key = {player.id}/>
@@ -30,7 +30,7 @@ function MyTeamPage({handleChange, setSearchTerm, searchTerm, myTeam, setMyTeam,
     if (searchTerm == "") {
         renderResults = (<h2>Search for your player</h2>)
     } else {
-        renderResults = (<Row xs={1} md={6} className="g-4">
+        renderResults = (<Row xs={1} md={6} className="g-6">
     {Array.from(searchedPlayerData).map((player, idx) => (
         <Col>
         <AddPlayer userTeamId={userTeamId} setSearchTerm={setSearchTerm} setMyTeam={setMyTeam} player = {player} key = {player.id}/>
@@ -58,7 +58,10 @@ function MyTeamPage({handleChange, setSearchTerm, searchTerm, myTeam, setMyTeam,
             })
         })
         .then(resp => resp.json())
-        .then(data => setUserTeamId(data.id))
+        .then(data => {
+            setUserTeamId(data.id)
+            setTeamName(data.team_name)
+        })
 
     }
 
