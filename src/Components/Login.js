@@ -38,7 +38,6 @@ function Login({user, setUser, loggedIn, setLoggedIn}){
                     // console.log(data[0])
                 }
             })
-            .then(console.log(user))
             
         }
     }

@@ -15,7 +15,10 @@ function AddPlayer({ player, userTeamId, setMyTeam }) {
             body: JSON.stringify(obj)
         })
         .then(resp => resp.json())
-        .then(data => setMyTeam(data))
+        .then(data => {
+            console.log(data)
+            setMyTeam(data)
+        })
             
     }
     return (
