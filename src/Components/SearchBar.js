@@ -1,13 +1,11 @@
 import { Form, FormGroup } from 'react-bootstrap'
 import FloatingLabel from "react-bootstrap-floating-label"
-function SearchBar({setSearchTerm, searchTerm}) {
-    function handleChange(event) {
-        event.preventDefault()
-        setSearchTerm(event.target.value)
-    }
+function SearchBar ({setSearchTerm, searchTerm, handleChange}) {
+    
     return (
-            <form>
-                <input type= "text" placeholder= "Search players.." value = {searchTerm} onChange= {handleChange}/>
+            <form onSubmit={handleChange}>
+                <input type= "text" placeholder= "Search players.."/>
+                <input type= "submit" value = "SEARCH"/>
             </form>
     )
 }
