@@ -26,7 +26,7 @@ function App() {
     .then(resp=> resp.json())
     .then(data=> {
       data.forEach(team => {
-        if (team.user_id == user.id) {
+        if (team.user_id === user.id) {
           setUserTeamId(team.id)
         }
         if (!user) {
@@ -46,7 +46,7 @@ function App() {
       }
     })
     setSearchedPlayerData(searchResults)
-    console.log()
+    console.log(searchResults)
     console.log(searchTerm)
   },[searchTerm])
   
@@ -67,14 +67,28 @@ function App() {
   },[])
   // fetching user team (get)
   useEffect(()=> {
-    fetch('http://127.0.0.1:9393/myteam')
-    .then(resp => resp.json())
-    .then(data => setMyTeam(data))
+    console.log("use effect retriggered")
+    if (user.id) {
+      fetch('http://127.0.0.1:9393/getuserteam', {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user_id: user.id
+        })
+      })
+      .then(resp => resp.json())
+      .then(data => setMyTeam(data))
+    }
+    else {
+      setMyTeam([])
+    }
     },[user])
     
   return (
     <div className="App">
-      <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
+      <NavBar setUserTeamId={setUserTeamId} loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
 
       <Switch>
         <Route path = "/teams" component = {()=> <Teams user = {user} teamData={teamData}/>} />
