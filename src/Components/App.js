@@ -20,6 +20,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("")
   const [myTeam, setMyTeam] = useState([])
   const [userTeamId, setUserTeamId] = useState("")
+  //sets user team id whenever user changes
   useEffect(()=> {
     fetch('http://127.0.0.1:9393/userteam')
     .then(resp=> resp.json())
@@ -31,7 +32,17 @@ function App() {
       })
     })
   },[user])
-
+  //sets searched player data whenever search term changes
+  const [searchedPlayerData, setSearchedPlayerData] = useState([])
+  useEffect(()=> {
+    let searchResults = playerData.map(player=>{
+      if (player.player_name.includes(searchTerm)) {
+        return player
+      }
+    })
+    setSearchedPlayerData(searchResults)
+  },[searchTerm])
+  
   //fetching playerInfo
   const [playerData, setPlayerData] = useState([])
     useEffect(()=> {
@@ -60,7 +71,7 @@ function App() {
       <Switch>
         <Route path = "/teams" component = {()=> <Teams user = {user} teamData={teamData}/>} />
         <Route path = "/players" component = {()=> <Players user = {user} playerData = {playerData}/>} />
-        <Route path = "/myTeamPage" component = {()=> <MyTeamPage user = {user} setSearchTerm = {setSearchTerm} myTeam = {myTeam} userTeamId = {userTeamId}/>} />
+        <Route path = "/myTeamPage" component = {()=> <MyTeamPage user = {user} searchTerm = {searchTerm} setSearchTerm = {setSearchTerm} setMyTeam = {setMyTeam} myTeam = {myTeam} userTeamId = {userTeamId} searchedPlayerData = {searchedPlayerData}/>} />
         <Route path = "/favorites" component = {()=> <Favorites user = {user}/>} />
         <Route path="/login" component = {()=> <Login user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/signup" component = {()=> <Signup user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
