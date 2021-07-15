@@ -3,14 +3,18 @@ import LoadPlayer from './LoadPlayer'
 import AddPlayer from './AddPlayer'
 
 function MyTeamPage({setSearchTerm, searchTerm, myTeam, setMyTeam, userTeamId, user, searchedPlayerData }) {
-    console.log(user)
     const renderMyTeam = myTeam.map(player => <LoadPlayer player = {player} key = {player.id}/>)
     let renderResults
     if (searchedPlayerData != []) {
-        renderResults = searchedPlayerData.map(player => <AddPlayer player = {player}/>)
+        renderResults = searchedPlayerData.map(player => {
+        if (player) {
+        return <AddPlayer player = {player} key = {player.id}/>
+        }
+    })
     } else {
         renderResults = (<h2>No players</h2>)
     }
+    
     return (
         <div>
             <SearchBar setSearchTerm = {setSearchTerm} searchTerm={searchTerm}/>

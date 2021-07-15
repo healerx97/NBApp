@@ -29,20 +29,28 @@ function App() {
         if (team.user_id == user.id) {
           setUserTeamId(team.id)
         }
+        if (!user) {
+          setUserTeamId("")
+        }
       })
     })
   },[user])
   //sets searched player data whenever search term changes
   const [searchedPlayerData, setSearchedPlayerData] = useState([])
   useEffect(()=> {
-    let searchResults = playerData.map(player=>{
-      if (player.player_name.includes(searchTerm)) {
-        return player
+    let searchResults = []
+    playerData.forEach(player=> {
+      let name = player['player_name'].toLowerCase()
+      if (name.includes(searchTerm.toLowerCase())) {
+        searchResults.push(player)
       }
     })
     setSearchedPlayerData(searchResults)
+    console.log()
+    console.log(searchTerm)
   },[searchTerm])
   
+
   //fetching playerInfo
   const [playerData, setPlayerData] = useState([])
     useEffect(()=> {

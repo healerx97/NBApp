@@ -5,7 +5,7 @@ function Players({playerData, user}) {
     <LoadPlayer player = {player} key = {player.id}/>
     // console.log(player.id)
     )
-    console.log(user)
+    // console.log(user)
     return (
         <div>
             {renderPlayers}

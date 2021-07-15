@@ -1,6 +1,6 @@
 
 function Home({user}) {
-    console.log(user)
+    // console.log(user)
     function handleClick(){
         fetch("http://127.0.0.1:9393/teams")
         .then(res => res.json())
