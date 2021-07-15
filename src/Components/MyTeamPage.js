@@ -4,7 +4,9 @@ import AddPlayer from './AddPlayer'
 import { Button } from "react-bootstrap"
 
 function MyTeamPage({handleChange, setSearchTerm, searchTerm, myTeam, setMyTeam, userTeamId, user, searchedPlayerData }) {
-    const renderMyTeam = myTeam.map(player => <LoadPlayer player = {player} key = {player.id}/>)
+    let renderMyTeam = []
+    if (myTeam) {
+    renderMyTeam = myTeam.map(player => <LoadPlayer player = {player} key = {player.id}/>) }
     let renderResults
     
     if (searchedPlayerData != []) {
