@@ -20,6 +20,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("")
   const [myTeam, setMyTeam] = useState([])
   const [userTeamId, setUserTeamId] = useState("")
+  const [teamName, setTeamName] = useState("")
   //sets user team id whenever user changes
   useEffect(()=> {
     fetch('http://127.0.0.1:9393/userteam')
@@ -28,6 +29,7 @@ function App() {
       data.forEach(team => {
         if (team.user_id === user.id) {
           setUserTeamId(team.id)
+          setTeamName(team.team_name)
         }
         if (!user) {
           setUserTeamId("")
@@ -46,8 +48,8 @@ function App() {
       }
     })
     setSearchedPlayerData(searchResults)
-    console.log(searchResults)
-    console.log(searchTerm)
+    // console.log(searchResults)
+    // console.log(searchTerm)
   },[searchTerm])
   
 
@@ -93,12 +95,12 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar setUserTeamId={setUserTeamId} loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
+      <NavBar setTeamName={setTeamName} setUserTeamId={setUserTeamId} loggedIn={loggedIn} setLoggedIn={setLoggedIn} user={user} setUser={setUser}/>
 
       <Switch>
         <Route path = "/teams" component = {()=> <Teams user = {user} teamData={teamData}/>} />
         <Route path = "/players" component = {()=> <Players user = {user} playerData = {playerData}/>} />
-        <Route path = "/myTeamPage" component = {()=> <MyTeamPage handleChange = {handleChange} user = {user} searchTerm = {searchTerm} setSearchTerm = {setSearchTerm} setMyTeam = {setMyTeam} myTeam = {myTeam} userTeamId = {userTeamId} searchedPlayerData = {searchedPlayerData}/>} />
+        <Route path = "/myTeamPage" component = {()=> <MyTeamPage teamName={teamName} setUserTeamId={setUserTeamId} handleChange = {handleChange} user = {user} searchTerm = {searchTerm} setSearchTerm = {setSearchTerm} setMyTeam = {setMyTeam} myTeam = {myTeam} userTeamId = {userTeamId} searchedPlayerData = {searchedPlayerData}/>} />
         <Route path = "/favorites" component = {()=> <Favorites user = {user}/>} />
         <Route path="/login" component = {()=> <Login user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/signup" component = {()=> <Signup user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />

@@ -3,8 +3,12 @@ import LoadPlayer from './LoadPlayer'
 import AddPlayer from './AddPlayer'
 import { CardDeck,Row,Col} from 'react-bootstrap'
 import { Button } from "react-bootstrap"
+import { useState } from "react"
 
-function MyTeamPage({handleChange, setSearchTerm, searchTerm, myTeam, setMyTeam, userTeamId, user, searchedPlayerData }) {
+function MyTeamPage({handleChange, setSearchTerm, searchTerm, myTeam, setMyTeam, userTeamId, user, searchedPlayerData, setUserTeamId, teamName }) {
+    const [addPlayerError, setAddPlayerError] = useState(false)
+
+
     let renderMyTeam = []
     if (myTeam) {
     renderMyTeam = (<Row xs={1} md={6} className="g-4">
@@ -38,7 +42,7 @@ function MyTeamPage({handleChange, setSearchTerm, searchTerm, myTeam, setMyTeam,
 
     function handleSubmit(e) {
         e.preventDefault()
-        let teamName = e.target[0].value
+        let teamName1 = e.target[0].value
         fetch('http://127.0.0.1:9393/userteam', {
             method: 'POST',
             headers: {
@@ -46,20 +50,27 @@ function MyTeamPage({handleChange, setSearchTerm, searchTerm, myTeam, setMyTeam,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                team_name: teamName,
+                team_name: teamName1,
                 user_id: user.id
             })
         })
         .then(resp => resp.json())
-        .then(data => console.log(data))
+        .then(data => setUserTeamId(data.id))
 
     }
+
+    const error = (<alert>Please create a team</alert>)
     
     return (
         <div>
             <SearchBar handleChange = {handleChange} setSearchTerm = {setSearchTerm} searchTerm={searchTerm}/>
+            <form onSubmit={handleSubmit}>
+                <input type="text"></input>
+                <button type="submit">Create MyTeam</button>
+            </form>
             {renderResults}
-            <h2>My Team</h2>
+            {addPlayerError ? error : null}
+            <h2>{teamName}</h2>
             {renderMyTeam}
         </div>
     )
