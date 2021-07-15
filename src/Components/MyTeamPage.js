@@ -40,15 +40,7 @@ function MyTeamPage({handleChange, setSearchTerm, searchTerm, myTeam, setMyTeam,
     
     return (
         <div>
-<<<<<<< HEAD
             <SearchBar handleChange = {handleChange} setSearchTerm = {setSearchTerm} searchTerm={searchTerm}/>
-=======
-            <SearchBar setSearchTerm = {setSearchTerm} searchTerm={searchTerm}/>
-            <form onSubmit={handleSubmit}>
-                <input type="text"></input>
-                <button type="submit">Create MyTeam</button>
-            </form>
->>>>>>> 2284ce00b7719781e9a01d421b447f6b2d16da37
             {renderResults}
             <h2>My Team</h2>
             {renderMyTeam}
