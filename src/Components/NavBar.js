@@ -3,7 +3,7 @@ import { Navbar, Container, Nav } from "react-bootstrap"
 import { useHistory } from 'react-router-dom'
 
 
-function NavBar({loggedIn, setLoggedIn, user, setUser, setUserTeamId}) {
+function NavBar({loggedIn, setLoggedIn, user, setUser, setUserTeamId, setTeamName}) {
     const history = useHistory()
 
     function handleClick(e) {
@@ -12,6 +12,7 @@ function NavBar({loggedIn, setLoggedIn, user, setUser, setUserTeamId}) {
             setLoggedIn(false)
             setUser({})
             setUserTeamId("")
+            setTeamName("")
             history.push('/login')
         }
         else {
