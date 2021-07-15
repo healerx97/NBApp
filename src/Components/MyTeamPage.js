@@ -27,13 +27,16 @@ function MyTeamPage({handleChange, setSearchTerm, searchTerm, myTeam, setMyTeam,
     //     return <AddPlayer userTeamId={userTeamId} setMyTeam={setMyTeam} player = {player} key = {player.id}/>
     //     }
     // })
+    if (searchTerm == "") {
+        renderResults = (<h2>Search for your player</h2>)
+    } else {
         renderResults = (<Row xs={1} md={6} className="g-4">
     {Array.from(searchedPlayerData).map((player, idx) => (
         <Col>
-        <AddPlayer userTeamId={userTeamId} setMyTeam={setMyTeam} player = {player} key = {player.id}/>
+        <AddPlayer userTeamId={userTeamId} setSearchTerm={setSearchTerm} setMyTeam={setMyTeam} player = {player} key = {player.id}/>
         </Col>
     ))}
-    </Row>)
+    </Row>) }
     } else {
         return renderResults = (<h2>No players</h2>)
     }

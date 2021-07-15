@@ -2,7 +2,7 @@ import nba from 'nba'
 import { Card, Button } from 'react-bootstrap'
 import { useState } from "react"
 
-function AddPlayer({ player, userTeamId, setMyTeam }) {
+function AddPlayer({ player, userTeamId, setMyTeam, setSearchTerm }) {
     
     // function handleError(){
     //     console.log("error")
@@ -24,6 +24,7 @@ function AddPlayer({ player, userTeamId, setMyTeam }) {
             }
             else {
                 setMyTeam(data)
+                setSearchTerm("")
             }
         })
             

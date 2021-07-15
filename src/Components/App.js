@@ -91,6 +91,7 @@ function App() {
     function handleChange(event) {
       event.preventDefault()
       setSearchTerm(event.target[0].value)
+      event.target[0].value = ""
   }
 
   return (
