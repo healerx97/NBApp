@@ -54,7 +54,7 @@ function App() {
         setAllTeams(myTeams)
     })
     
-}, [user, myTeam])
+}, [user, myTeam, teamName])
 
   useEffect(()=> {
     fetch('http://127.0.0.1:9393/userteam')
