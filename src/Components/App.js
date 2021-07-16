@@ -2,7 +2,7 @@ import '../App.css';
 import nba from 'nba'
 
 import React, { useState, useEffect } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useRouteMatch } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './Home';
@@ -13,7 +13,7 @@ import Players from './Players';
 import NavBar from './NavBar';
 import Login from './Login';
 import Signup from './Signup';
-import LoadMyPlayer from './LoadMyPlayer'
+import LoadPlayer from './LoadPlayer'
 import { CardDeck,Row,Col} from 'react-bootstrap'
 
 function App() {
@@ -33,14 +33,13 @@ function App() {
         let myTeams = data.map(team => {
             let userTeam = team.team
             let teamName = team.name
-            let eachTeam = userTeam.map(player =>{
-               return (
-               <Col>
-                    <LoadMyPlayer player = {player} key = {player.id}/>
-                </Col>
-               )
-                
-            })
+            let eachTeam = (<Row xs={1} md={6} className="g-4">
+                          {Array.from(userTeam).map((player, idx) => (
+                              <Col>
+                              <LoadPlayer player = {player} key = {player.id}/>
+                              </Col>
+                          ))}
+                          </Row>)
             // console.log(eachTeam)
             return (
                 <div>

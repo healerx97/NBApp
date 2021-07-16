@@ -104,7 +104,7 @@
 button{
   background:rgb(3, 16, 90);
   color:#fff;
-  border:none;
+  border: white;
   position:relative;
   height:30px;
   font-size:1.6em;
@@ -153,15 +153,19 @@ input[type=text]:focus {
 }
 
 .mb-3 {
-  width: 50%;
+  width: 40%;
   position: relative;
-  margin-left: 20%;
+  margin-left: 29%;
 
 }
-/* .row {
-  padding-left: 42%;
+ .row {
+  padding-left: 2%;
 }
 
-.col {
+.orBtn {
+  background: white;
+  color:rgb(3, 16, 90)
+}
+/* .col {
   padding-left: 42%
 } */

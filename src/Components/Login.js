@@ -47,7 +47,7 @@ function Login({user, setUser, loggedIn, setLoggedIn}){
     let error = (<p>Invalid email or password</p>)
 
     return (
-        <Form onSubmit = {handleSubmit}>
+        <Form onSubmit = {handleSubmit} style={{'text-align': 'center'}}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email"></Form.Control>
@@ -59,7 +59,9 @@ function Login({user, setUser, loggedIn, setLoggedIn}){
             <button type="submit">
                 Login
             </button>
-            <p>or</p>
+            <button className = 'orBtn'>
+                or
+            </button>
             <button onClick = {handleSignup}>
                 Sign up
             </button>
