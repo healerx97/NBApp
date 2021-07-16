@@ -1,16 +1,19 @@
+import { CardDeck,Row,Col} from 'react-bootstrap'
+import LoadMyPlayer from './LoadMyPlayer'
+import AddPlayer from './AddPlayer'
+import { useEffect } from "react"
 
-function Home({user}) {
+
+function Home({user, allTeams}) {
     // console.log(user)
-    function handleClick(){
-        fetch("http://127.0.0.1:9393/teams")
-        .then(res => res.json())
-        .then(data => console.log(data))
-    }
+    let myTeams = []
+    
     
     return (
         <div>
             name
-            <button onClick={handleClick}>Get Teams</button>
+            <button>Get Teams</button>
+            {allTeams}
         </div>
     )
 }

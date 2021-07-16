@@ -13,6 +13,8 @@ import Players from './Players';
 import NavBar from './NavBar';
 import Login from './Login';
 import Signup from './Signup';
+import LoadMyPlayer from './LoadMyPlayer'
+import { CardDeck,Row,Col} from 'react-bootstrap'
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
@@ -21,7 +23,45 @@ function App() {
   const [myTeam, setMyTeam] = useState([])
   const [userTeamId, setUserTeamId] = useState("")
   const [teamName, setTeamName] = useState("")
+  const [allTeams, setAllTeams] = useState([])
   //sets user team id whenever user changes
+  useEffect(() => {
+    fetch("http://127.0.0.1:9393/allteams")
+    .then(res => res.json())
+    .then(data =>{
+        console.log(data)
+        let myTeams = data.map(team => {
+            let userTeam = team.team
+            let teamName = team.name
+            let eachTeam = userTeam.map(player =>{
+               return (
+               <Col>
+                    <LoadMyPlayer player = {player} key = {player.id}/>
+                </Col>
+               )
+                
+                // item.map(player => {
+                //     // console.log(player)
+                //     <Col>
+                //     <LoadMyPlayer setMyTeam = {setMyTeam} userTeamId = {userTeamId} player = {player} key = {player.id}/>
+                //     </Col>
+                // })
+            })
+            // console.log(eachTeam)
+            return (
+                <div>
+                    <div className= "fancy">{teamName}</div>
+                    {eachTeam}
+                </div>
+
+            ) 
+            // console.log(myTeams)
+        })
+        setAllTeams(myTeams)
+    })
+    
+}, [user, myTeam])
+
   useEffect(()=> {
     fetch('http://127.0.0.1:9393/userteam')
     .then(resp=> resp.json())
@@ -105,7 +145,7 @@ function App() {
         <Route path = "/favorites" component = {()=> <Favorites user = {user}/>} />
         <Route path="/login" component = {()=> <Login user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/signup" component = {()=> <Signup user={user} setUser={setUser} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
-        <Route path = "/" component = {()=> <Home user={user}/>} />
+        <Route path = "/" component = {()=> <Home allTeams={allTeams} user={user}/>} />
       </Switch>
     </div>
   );
