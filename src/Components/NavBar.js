@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import { Navbar, Container, Nav } from "react-bootstrap"
+import { Navbar, Container, Nav, NavItem } from "react-bootstrap"
 import { useHistory } from 'react-router-dom'
 
 
@@ -24,8 +24,8 @@ function NavBar({loggedIn, setLoggedIn, user, setUser, setUserTeamId, setTeamNam
 
     return (
         <header>
-            <h2>NavBar</h2>
-            <Navbar bg="primary" expand="lg" variant="dark">
+            <Navbar className="navbar" expand="lg" variant="dark">
+                <Navbar.Brand style={{'marginLeft': "5%", 'fontFamily': 'Verdana, Geneva, Tahoma, sans-serif'}}> NBApp </Navbar.Brand>
                 <Container id="navbar">
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/">
@@ -40,7 +40,7 @@ function NavBar({loggedIn, setLoggedIn, user, setUser, setUserTeamId, setTeamNam
                         <Nav.Link as={Link} to="/favorites" >
                         Favorites
                         </Nav.Link>
-                        <Nav.Link as={Link} to="/myTeamPage" >
+                        <Nav.Link as={Link} to={loggedIn ? "/myTeamPage" : "/login"} >
                         My Team
                         </Nav.Link>
                         <Nav.Link as={Link} onClick={handleClick} to={loggedIn ? "/logout" : "/login"}>{loggedIn ? "Log out" : "Log in"}</Nav.Link>

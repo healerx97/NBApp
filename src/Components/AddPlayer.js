@@ -30,14 +30,14 @@ function AddPlayer({ player, userTeamId, setMyTeam, setSearchTerm }) {
             
     }
     return (
-        <Card style={{ width: '12rem' }}>
+        <Card style={{ width: '12rem', padding: '0.2rem', margin: '3%', "margin-right": '0.5rem'}} className = "loadCard">
             <Card.Img variant="top" onError={(e) => {e.target.onerror = null; e.target.src='https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/201144.png'}} src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${player.id}.png`} alt="image" />
             <Card.Body>
-            <Card.Title>{player.player_name}</Card.Title>
-            <Card.Text>{player.teamName}</Card.Text>
+            <Card.Title style={{"fontSize": "100%"}}>{player.player_name}</Card.Title>
+            <Card.Text style={{"fontSize": "0.7rem"}}>{player.teamName}</Card.Text>
             <Popup  mouseEnterDelay={300}
-                mouseLeaveDelay={100} on='hover' trigger={<Button> Info </Button>} position= "center center" >
-                <Card style={{ width: '18rem' }}>
+                mouseLeaveDelay={100} on='hover' trigger={<Button variant = "danger" style = {{"marginRight": "5%"}}> Info </Button>} position= "center center" >
+                <Card style={{ width: '18rem', lineHeight: '0.2rem'}}>
                 <Card.Img variant="top" onError={(e) => {e.target.onerror = null; e.target.src='https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/201144.png'}} src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${player.id}.png`} alt="image" />
                 <Card.Body>
                 <Card.Title>{player.player_name}</Card.Title>
@@ -52,7 +52,7 @@ function AddPlayer({ player, userTeamId, setMyTeam, setSearchTerm }) {
                 </Card.Body>
                 </Card>
             </Popup>
-            <Button variant="primary" onClick = {handleAdd}>Add to Team</Button>
+            <Button variant="primary" onClick = {handleAdd}>Add</Button>
             </Card.Body>
         </Card>
     )

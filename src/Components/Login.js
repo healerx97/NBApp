@@ -31,7 +31,7 @@ function Login({user, setUser, loggedIn, setLoggedIn}){
                 else {
                     setLoginStatus(true)
                     setUser(data[0])
-                    history.push("/")
+                    history.push("/myTeamPage")
                     // console.log(user)
                     setLoggedIn(true)
                    
@@ -54,12 +54,12 @@ function Login({user, setUser, loggedIn, setLoggedIn}){
                 <Form.Label>Password</Form.Label>
                 <Form.Control type="password" placeholder="Password" />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <button type="submit">
                 Login
-            </Button>
-            <Button variant="primary" href="/signup">
+            </button>
+            <button href="/signup">
                 Sign up
-            </Button>
+            </button>
             {loginStatus ? null : error}
         </Form>
     )

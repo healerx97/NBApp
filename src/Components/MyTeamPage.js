@@ -1,11 +1,17 @@
 import SearchBar from './SearchBar'
 import LoadPlayer from './LoadPlayer'
 import AddPlayer from './AddPlayer'
+import LoadMyPlayer from './LoadMyPlayer'
+
 import { CardDeck,Row,Col} from 'react-bootstrap'
 import { Button } from "react-bootstrap"
 import { useState } from "react"
 
-function MyTeamPage({handleChange, setTeamName, setSearchTerm, searchTerm, myTeam, setMyTeam, userTeamId, user, searchedPlayerData, setUserTeamId, teamName }) {
+{<link rel="stylesheet" href="fontawesome-free-5.15.1/css/all.css"></link>}
+{<script src="https://kit.fontawesome.com/afd6aa68df.js" crossorigin="anonymous"></script>}
+
+
+function MyTeamPage({handleChange, setTeamName, setSearchTerm, searchTerm, myTeam, setMyTeam, userTeamId, user, searchedPlayerData, setUserTeamId, teamName, loggedIn }) {
     const [addPlayerError, setAddPlayerError] = useState(false)
 
 
@@ -14,7 +20,7 @@ function MyTeamPage({handleChange, setTeamName, setSearchTerm, searchTerm, myTea
     renderMyTeam = (<Row xs={1} md={6} className="g-6">
     {Array.from(myTeam).map((player, idx) => (
         <Col>
-        <LoadPlayer player = {player} key = {player.id}/>
+        <LoadMyPlayer setMyTeam = {setMyTeam} userTeamId = {userTeamId} player = {player} key = {player.id}/>
         </Col>
     ))}
     </Row>) }
@@ -28,7 +34,7 @@ function MyTeamPage({handleChange, setTeamName, setSearchTerm, searchTerm, myTea
     //     }
     // })
     if (searchTerm == "") {
-        renderResults = (<h2>Search for your player</h2>)
+        renderResults = (<h2></h2>)
     } else {
         renderResults = (<Row xs={1} md={6} className="g-6">
     {Array.from(searchedPlayerData).map((player, idx) => (
@@ -64,19 +70,28 @@ function MyTeamPage({handleChange, setTeamName, setSearchTerm, searchTerm, myTea
         })
 
     }
-
+    let createTeamForm 
+    createTeamForm = (
+        <div>
+            <br></br>
+        <div className="fancy">Create your own team now!</div>
+        <br></br>
+        <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="insert your team name"></input>
+            <button type="submit">Create My Team</button>
+        </form>
+        </div>
+    )
     const error = (<alert>Please create a team</alert>)
     
     return (
         <div>
-            <SearchBar handleChange = {handleChange} setSearchTerm = {setSearchTerm} searchTerm={searchTerm}/>
-            <form onSubmit={handleSubmit}>
-                <input type="text"></input>
-                <button type="submit">Create MyTeam</button>
-            </form>
+            {userTeamId ? <SearchBar handleChange = {handleChange} setSearchTerm = {setSearchTerm} searchTerm={searchTerm}/> : createTeamForm}
+            
             {renderResults}
             {addPlayerError ? error : null}
-            <h2>{teamName}</h2>
+            <br></br>
+            <div className= "fancy">{teamName}</div>
             {renderMyTeam}
         </div>
     )

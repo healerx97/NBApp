@@ -56,3 +56,98 @@
 .popup-content {
   -webkit-animation: anvil 0.3s cubic-bezier(0.38, 0.1, 0.36, 0.9) forwards;
 }
+
+.loadCard {
+  background:rgb(3, 16, 90);
+  color:rgb(68, 68, 68);
+  border:none;
+  position:relative;
+  height:100%;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+
+.loadCard:hover {
+  background:#fff;
+  color:#030303;
+  opacity: 0.8;
+}
+.loadCard:before,.loadCard:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:1px;
+  width:0;
+  background: #0b0a5f;
+  transition:400ms ease all;
+}
+.loadCard:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.loadCard:hover:before,.loadCard:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+
+.navbar {
+  background: rgb(3, 16, 90)
+}
+
+button{
+  background:rgb(3, 16, 90);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:30px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background:#fff;
+  color:#030303;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #0b0a5f;
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+input[type=text] {
+  width: 200px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  margin-right: 0.5%
+}
+input[type=text]:focus {
+  width: 20%;
+}
+
+.fancy {
+  color: #05044b; font-family: 'Raleway',sans-serif; font-size: 62px; font-weight: 800; line-height: 72px; margin: 0 0 24px; text-align: center; text-transform: uppercase;
+}
