@@ -151,3 +151,11 @@ input[type=text]:focus {
 .fancy {
   color: #05044b; font-family: 'Raleway',sans-serif; font-size: 62px; font-weight: 800; line-height: 72px; margin: 0 0 24px; text-align: center; text-transform: uppercase;
 }
+
+.mb-3 {
+  width: 50%;
+  position: relative;
+  margin-left: 20%;
+  -webkit-box-align: center;
+
+}

@@ -31,7 +31,7 @@ function Login({user, setUser, loggedIn, setLoggedIn}){
                 else {
                     setLoginStatus(true)
                     setUser(data[0])
-                    history.push("/myTeamPage")
+                    history.push("/")
                     // console.log(user)
                     setLoggedIn(true)
                    
@@ -41,7 +41,9 @@ function Login({user, setUser, loggedIn, setLoggedIn}){
             
         }
     }
-
+    function handleSignup() {
+        history.push("/signup")
+    }
     let error = (<p>Invalid email or password</p>)
 
     return (
@@ -57,7 +59,7 @@ function Login({user, setUser, loggedIn, setLoggedIn}){
             <button type="submit">
                 Login
             </button>
-            <button href="/signup">
+            <button onClick = {handleSignup}>
                 Sign up
             </button>
             {loginStatus ? null : error}

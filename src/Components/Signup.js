@@ -35,7 +35,7 @@ function Signup({user, setUser, loggedIn, setLoggedIn}){
                     setUser(data)
                     console.log(data)
                     setLoggedIn(true)
-                    history.push("/myTeamPage")
+                    history.push("/")
                     console.log(user)
                 }
             })
