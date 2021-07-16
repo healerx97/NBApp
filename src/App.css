@@ -156,6 +156,5 @@ input[type=text]:focus {
   width: 50%;
   position: relative;
   margin-left: 20%;
-  -webkit-box-align: center;
 
 }
