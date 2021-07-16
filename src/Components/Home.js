@@ -11,8 +11,6 @@ function Home({user, allTeams}) {
     
     return (
         <div>
-            name
-            <button>Get Teams</button>
             {allTeams}
         </div>
     )

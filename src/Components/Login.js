@@ -59,6 +59,7 @@ function Login({user, setUser, loggedIn, setLoggedIn}){
             <button type="submit">
                 Login
             </button>
+            <p>or</p>
             <button onClick = {handleSignup}>
                 Sign up
             </button>

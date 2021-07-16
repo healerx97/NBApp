@@ -40,12 +40,6 @@ function App() {
                 </Col>
                )
                 
-                // item.map(player => {
-                //     // console.log(player)
-                //     <Col>
-                //     <LoadMyPlayer setMyTeam = {setMyTeam} userTeamId = {userTeamId} player = {player} key = {player.id}/>
-                //     </Col>
-                // })
             })
             // console.log(eachTeam)
             return (
